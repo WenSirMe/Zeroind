@@ -1,0 +1,11 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:background="?android:selectableItemBackground"
+    android:layout_width="wrap_content"
+    android:paddingBottom="5dp"
+    android:layout_height="20dp"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:textColor="#baedac"
+    android:elevation="200dip"
+    android:textAllCaps="true" />

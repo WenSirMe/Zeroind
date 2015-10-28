@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_register"
+    tools:context="org.sssta.zeroind.activity.RegisterActivity">
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/login_register_top_relative"
+            android:background="@color/register_TopBackground"
+            app:layout_heightPercent="49%"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <org.sssta.zeroind.ui.CircleImageView
+                android:id="@+id/lg_user_image"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/userImage_width_height"
+                android:layout_height="@dimen/userImage_width_height" />
+            <LinearLayout
+                android:orientation="horizontal"
+                app:layout_heightPercent="20%"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/login_register_textSize"
+                    android:textColor="@color/register_login_text"
+                    android:gravity="center"
+                    android:text="@string/login"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:textSize="@dimen/login_register_textSize"
+                    android:textColor="@color/register_login_text"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </android.support.percent.PercentRelativeLayout>
+        <org.sssta.zeroind.ui.SlidingTabLayout
+            android:id="@+id/lg_slidingTablayout"
+            android:layout_below="@+id/login_register_top_relative"
+            android:background="@color/register_TopBackground"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/lg_viewPager"
+            android:layout_above="@+id/commit_login_register"
+            android:layout_below="@+id/lg_slidingTablayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:background="@color/register_TopBackground"
+            android:id="@+id/commit_login_register"
+            android:padding="15dp"
+            android:src="@mipmap/ok"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+    </android.support.percent.PercentRelativeLayout>
+
+
+</LinearLayout>
