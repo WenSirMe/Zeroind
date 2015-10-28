@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_user" tools:context="org.sssta.zeroind.activity.UserActivity">
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/userinfo_reletivelayout"
+        android:elevation="20px"
+        android:background="@color/register_TopBackground"
+        app:layout_heightPercent="50%"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/userinfo_back"
+            android:padding="@dimen/back_image_margin"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <org.sssta.zeroind.ui.CircleImageView
+            android:layout_marginTop="@dimen/userinfo_image_margin"
+            android:layout_marginLeft="@dimen/userinfo_image_margin"
+            android:id="@+id/info_userImage"
+            android:src="@drawable/errer_image"
+            android:layout_width="@dimen/userImage_width_height"
+            android:layout_height="@dimen/userImage_width_height"/>
+        <ImageView
+            android:id="@+id/userinfo_setting"
+            android:src="@mipmap/ic_settings_black"
+            android:padding="@dimen/back_image_margin"
+            android:scaleType="fitCenter"
+            android:layout_alignParentEnd="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+            <!--app:layout_marginTopPercent="10%"-->
+        <LinearLayout
+            android:id="@+id/username_linear"
+            android:layout_marginRight="@dimen/userinfo_image_margin"
+            android:layout_marginLeft="@dimen/userinfo_image_margin"
+            android:layout_marginTop="@dimen/userinfo_image_margin"
+            android:layout_below="@+id/info_userImage"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom">
+            <TextView
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:text="@string/user_name"
+                android:id="@+id/info_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/userinfo_sex"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/men_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:text="level "
+                android:layout_marginLeft="44dp"
+                android:id="@+id/info_user_level"
+                android:layout_below="@+id/info_user_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/userinfo_line"
+            android:layout_marginRight="@dimen/userinfo_image_margin"
+            android:layout_marginLeft="@dimen/userinfo_image_margin"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/username_linear"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="2dp" />
+        <TextView
+            android:textColor="#aaffffff"
+            android:textSize="14sp"
+            android:text="balabala"
+            android:layout_marginRight="@dimen/userinfo_image_margin"
+            android:layout_marginLeft="@dimen/userinfo_image_margin"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/userinfo_line"
+            android:id="@+id/info_user_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.percent.PercentRelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/userinfo_reletivelayout"
+        android:orientation="horizontal"
+        app:layout_heightPercent="13%"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/userinfo_mailbox"
+            android:paddingTop="@dimen/mailbox_padding"
+            android:paddingBottom="@dimen/mailbox_padding"
+            android:src="@drawable/mailbox"
+            android:background="@color/userinfo_one"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/userinfo_message"
+            android:paddingTop="@dimen/mailbox_padding"
+            android:paddingBottom="@dimen/mailbox_padding"
+            android:src="@drawable/forword_message"
+            android:background="@color/userinfo_two"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/userinfo_wind"
+            android:src="@drawable/wind_turbine"
+            android:paddingTop="@dimen/mailbox_padding"
+            android:paddingBottom="@dimen/mailbox_padding"
+            android:background="@color/userinfo_threee"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+        <!--android:layout_marginLeft="@dimen/usertext_margin_left"-->
+
+</android.support.percent.PercentRelativeLayout>
+<!-- From: file:/D:/android/AndroidProject/Zeroind/app/src/main/res/layout/content_user.xml -->

@@ -1,0 +1,89 @@
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="org.sssta.zeroind.fragment.LoginFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        app:layout_heightPercent = "20%"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center_vertical"
+            android:text="@string/user_name"
+            android:textColor="@color/username_password_sex"
+            android:textSize="@dimen/login_register_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <EditText
+            android:singleLine="true"
+            android:id="@+id/login_edit_userName"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/login_register_item_text"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/login_userName_image"
+            android:layout_gravity="end"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/register_username"
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        android:background="@color/lg_text_line_color"
+        app:layout_marginTopPercent = "20.3%"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        app:layout_marginTopPercent="23%"
+        app:layout_heightPercent = "20%"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center_vertical"
+            android:text="@string/password"
+            android:textColor="@color/username_password_sex"
+            android:textSize="@dimen/login_register_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <EditText
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:id="@+id/login_edit_password"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/login_register_item_text"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/login_password_image"
+            android:layout_gravity="end"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/register_password"
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        android:background="@color/lg_text_line_color"
+        app:layout_marginTopPercent = "43.3%"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</android.support.percent.PercentFrameLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5CA1E6</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- login and register layout-->
+    <color name="register_TopBackground">#A5C7EC</color>
+    <color name="register_login_text">#FFFFFF</color> //TextView text background
+    <color name="lg_text_line_color">#e0D4D4D4</color>
+    <color name="username_password_sex">#4A4A4A</color>
+    <color name="sex_item">#5CA1E6</color>
+    <color name="LRTextColor">#ccffffff</color>  //TextView text color
+    <color name="LRButton">#c6ffffff</color> //button background
+    <color name="LRButtonText">#0d8ed9</color> //button text color
+
+    <color name="LRBackground">#aa191fd2</color> //background
+    <color name="TextInputLayout">#00eeeeee</color>
+
+    <color name="userinfo_one">#7BB1EB</color>
+    <color name="userinfo_two">#91BBE9</color>
+    <color name="userinfo_threee">#FFE258</color>
+
+
+</resources>

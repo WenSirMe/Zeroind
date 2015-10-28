@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:orderInCategory="0"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:id="@+id/menu_item_send_plane"
+            android:checked="true"
+            android:title="收件箱"/>
+        <item
+            android:orderInCategory="1"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:id="@+id/menu_item_one"
+            android:title="大呀大风车"/>
+        <item
+            android:icon="@drawable/ic_menu_white_24dp"
+            android:orderInCategory="2"
+            android:id="@+id/menu_item_report"
+            android:title="联系我们"/>
+        <item
+            android:icon="@drawable/ehhe"
+            android:orderInCategory="3"
+            android:id="@+id/menu_item_about"
+            android:title="关于"/>
+    </group>
+</menu><!-- From: file:/D:/android/AndroidProject/Zeroind/app/src/main/res/menu/drawer.xml -->
