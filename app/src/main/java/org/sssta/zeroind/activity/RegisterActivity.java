@@ -134,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
                     Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD +
                             SharedPreferenceUtil.getInstance().getImg_id()
                             + Constants.PHOTO_TYPE)
+                            .placeholder(R.drawable.error_image)
                             .error(R.drawable.ehhe).into(mUserImage);
 
                 } else {

@@ -27,16 +27,17 @@ ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:7:
 		ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:7:22-81
 application
 ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:9:5-45:19
-MERGED from [com.android.support:appcompat-v7:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:percent:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\percent\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:percent:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\percent\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:13:9-41
 	android:supportsRtl
@@ -101,17 +102,19 @@ ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:40
 		ADDED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml:41:13-53
 uses-sdk
 INJECTED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:percent:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\percent\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:percent:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\percent\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] D:\android\AndroidProject\Zeroind\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		INJECTED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml
 		INJECTED from D:\android\AndroidProject\Zeroind\app\src\main\AndroidManifest.xml

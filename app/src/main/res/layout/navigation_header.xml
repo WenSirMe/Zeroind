@@ -8,7 +8,7 @@
         android:id="@+id/navigation_user_image"
         android:layout_marginTop="@dimen/navigation_Image_margin"
         android:layout_marginLeft="@dimen/navigation_Image_margin"
-        android:src="@drawable/errer_image"
+        android:src="@drawable/error_image"
         android:layout_width="@dimen/navigation_imageView_height"
         android:layout_height="@dimen/navigation_imageView_height" />
     

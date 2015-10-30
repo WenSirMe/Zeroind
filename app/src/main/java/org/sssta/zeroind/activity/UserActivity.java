@@ -130,9 +130,12 @@ public class UserActivity extends AppCompatActivity {
             }
         }
         infoUserName.setText(SharedPreferenceUtil.getInstance().getUserName());
-        infoUserLevel.setText("level "+String.valueOf(SharedPreferenceUtil.getInstance().getUserLevel()));
+        infoUserLevel.setText("level "+SharedPreferenceUtil.getInstance().getUserLevel());
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD + SharedPreferenceUtil.getInstance().getImg_id() +
-                Constants.PHOTO_TYPE).into(infoUserImage);
+                Constants.PHOTO_TYPE)
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(infoUserImage);
         infoUserSignature.setText(SharedPreferenceUtil.getInstance().getSignature());
     }
 

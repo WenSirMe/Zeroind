@@ -8,12 +8,12 @@ import butterknife.ButterKnife.ViewBinder;
 public class RegisterFragment$$ViewBinder<T extends org.sssta.zeroind.fragment.RegisterFragment> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131493007, "field 'editUsername'");
-    target.editUsername = finder.castView(view, 2131493007, "field 'editUsername'");
-    view = finder.findRequiredView(source, 2131493008, "field 'spinnerSex'");
-    target.spinnerSex = finder.castView(view, 2131493008, "field 'spinnerSex'");
-    view = finder.findRequiredView(source, 2131493009, "field 'editPassword'");
-    target.editPassword = finder.castView(view, 2131493009, "field 'editPassword'");
+    view = finder.findRequiredView(source, 2131493016, "field 'editUsername'");
+    target.editUsername = finder.castView(view, 2131493016, "field 'editUsername'");
+    view = finder.findRequiredView(source, 2131493017, "field 'spinnerSex'");
+    target.spinnerSex = finder.castView(view, 2131493017, "field 'spinnerSex'");
+    view = finder.findRequiredView(source, 2131493018, "field 'editPassword'");
+    target.editPassword = finder.castView(view, 2131493018, "field 'editPassword'");
   }
 
   @Override public void unbind(T target) {

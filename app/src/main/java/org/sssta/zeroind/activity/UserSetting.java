@@ -79,7 +79,10 @@ public class UserSetting extends AppCompatActivity {
 
     private void initView() {
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD+SharedPreferenceUtil.getInstance().getImg_id()
-                +Constants.PHOTO_TYPE).into(settingImage);
+                +Constants.PHOTO_TYPE)
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(settingImage);
         settingUsername.setText(SharedPreferenceUtil.getInstance().getUserName());
         settingDirection.setText(Constants.WIND_DIRS[SharedPreferenceUtil.getInstance().getDirection()]);
         settingSignature.setText(SharedPreferenceUtil.getInstance().getSignature());

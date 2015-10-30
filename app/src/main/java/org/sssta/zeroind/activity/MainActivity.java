@@ -252,7 +252,9 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
 
     public void refreshDrawer() {
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD+SharedPreferenceUtil.getInstance().getImg_id()+Constants.PHOTO_TYPE)
-                .error(R.drawable.errer_image).into(userImage);
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(userImage);
         userName.setText(SharedPreferenceUtil.getInstance().getUserName());
         userSign.setText(SharedPreferenceUtil.getInstance().getSignature());
     }
