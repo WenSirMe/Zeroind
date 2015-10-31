@@ -6,11 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.transition.Fade;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import org.sssta.zeroind.R;
 
@@ -22,7 +27,7 @@ import org.sssta.zeroind.R;
  * Use the {@link AboutUsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AboutUsFragment extends Fragment {
+public class AboutUsFragment extends Fragment implements ViewGroup.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,6 +55,7 @@ public class AboutUsFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -74,10 +80,11 @@ public class AboutUsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_about_us2, container, false);
         View textView = v.findViewById(R.id.about_us_text);
         ViewGroup vp = (ViewGroup)textView.getParent();
+        vp.setOnClickListener(this);
         if (index == 2)
-            vp.setBackgroundResource(R.drawable.bg_about_pager_2);
+            vp.setBackgroundResource(R.drawable.bg_about_pager_pink);
         else
-            vp.setBackgroundResource(R.drawable.bg_about_pager_1);
+            vp.setBackgroundResource(R.drawable.bg_about_pager_blue);
         ((TextView) textView).setText(AboutPeopleList[index]);
         return v;
     }
@@ -104,6 +111,13 @@ public class AboutUsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        YoYo.with(Techniques.Tada)
+                .duration(800)
+                .playOn(v);
     }
 
     /**

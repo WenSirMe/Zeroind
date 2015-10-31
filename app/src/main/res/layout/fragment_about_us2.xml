@@ -1,14 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="org.sssta.zeroind.fragment.AboutUsFragment"
-    android:padding="20dp">
+    android:padding="0dp">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/bg_about_pager_1"
+        android:background="@drawable/bg_about_pager_blue"
+
         android:id="@+id/about_us_text_bg">
         <TextView
             android:id="@+id/about_us_text"
