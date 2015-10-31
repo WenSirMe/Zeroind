@@ -72,8 +72,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
     private boolean isLoading = false;
     private String[] titles = new String[] {"登录","注册"};
 
-
-            //
     @Override
     public void overridePendingTransition(int enterAnim, int exitAnim) {
         super.overridePendingTransition(enterAnim, exitAnim);

@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
         userImage = (CircleImageView) findViewById(R.id.navigation_user_image);
         userName = (TextView) findViewById(R.id.navigation_userName);
         userSign = (TextView) findViewById(R.id.navigation_userSign);
-        ImageView imageView = (ImageView) findViewById(R.id.navigation_user_image);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        //ImageView imageView = (ImageView) findViewById(R.id.navigation_user_image);
+        userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, UserActivity.class);
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
 
         getSupportFragmentManager()
                 .beginTransaction()
+                .replace(R.id.main_fragment,mBaseFragment[INDEX_FRAGMENT_PLANERECERIVE])
                 .replace(R.id.main_fragment,mBaseFragment[INDEX_FRAGMENT_PLANERECERIVE])
                 .commit();
         currentIndex = INDEX_FRAGMENT_PLANERECERIVE;
@@ -232,7 +233,8 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
                 lgActivity = true;
                 break;
             case R.id.menu_item_about:
-                showFragment(INDEX_FRAGMENT_ABOUT);
+                intent = new Intent(this,AboutUsActivity.class);
+                startActivity(intent);
                 lgActivity = false;
                 break;
             case R.id.menu_item_report:

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.sssta.zeroind.R;
-import org.sssta.zeroind.adapter.RecyclerWrapAdapter;
+
 import org.sssta.zeroind.ui.AnimationRecycler;
 
 import java.util.ArrayList;
@@ -32,25 +32,17 @@ import java.util.List;
  * Use the {@link PlaneReceive#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRefreshListener {
+public class PlaneReceive extends BaseFragment  {
 
     private final String TAG = "receiveTag";
     private Context mContext;
-    private RecyclerWrapAdapter adapter;
-    private int lastVisibleItem;
-    private LinearLayoutManager mLayoutManager;
-
-    private View headerView;
 
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-//    @Bind(R.id.recyclerView_receive)
-    RecyclerView recyclerViewReceive;
-//    @Bind(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+
 
     // TODO: Rename and change types of parameters
 
@@ -84,37 +76,37 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
     }
 
     private void initView(View view) {
-        adapter = new RecyclerWrapAdapter(null);
-        mLayoutManager = new LinearLayoutManager(mContext);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        recyclerViewReceive = (RecyclerView) view.findViewById(R.id.recyclerView_receive);
-        recyclerViewReceive.setLayoutManager(mLayoutManager);
-        recyclerViewReceive.setAdapter(adapter);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                handler.sendEmptyMessageDelayed(0, 3000);
-                Log.d(TAG, "ignore manully update!");
-            }
-        });
-//        recyclerViewReceive.addView(headerLayout,0);
-        recyclerViewReceive.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView,
-                                             int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
-                    handler.sendEmptyMessageDelayed(1, 3000);
-                }
-            }
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-//                Log.d("index",dx + "   " + recyclerViewReceive.indexOfChild(headerLayout));
-                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-            }
-        });
+
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+//        recyclerViewReceive = (RecyclerView) view.findViewById(R.id.recyclerView_receive);
+//        recyclerViewReceive.setLayoutManager(mLayoutManager);
+//        recyclerViewReceive.setAdapter(adapter);
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                handler.sendEmptyMessageDelayed(0, 3000);
+//                Log.d(TAG, "ignore manully update!");
+//            }
+//        });
+//
+//        recyclerViewReceive.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView,
+//                                             int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
+//                    handler.sendEmptyMessageDelayed(1, 3000);
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+//            }
+//        });
     }
 
     @Override
@@ -139,6 +131,7 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
         Log.d("state", "on activity created");
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -149,7 +142,6 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
                     + " must implement OnUserReplyListener");
         }
     }
-
 
     @Override
     public void onDetach() {
@@ -162,10 +154,7 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
         super.onDestroyView();
     }
 
-    @Override
-    public void onRefresh() {
 
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -182,44 +171,30 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
         public void onUserReplay(Uri uri);
     }
 
-    private Handler handler = new Handler() {
+//    private Handler handler = new Handler() {
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case 0:
+//                    Toast.makeText(mContext, "DOWN", Toast.LENGTH_SHORT).show();
+//                    swipeRefreshLayout.setRefreshing(false);
+//
+//                    adapter.getLists().clear();
+//                    addList();
+//                    break;
+//                case 1:
+//                    Toast.makeText(mContext, "UP", Toast.LENGTH_SHORT).show();
+//                    addList();
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        }
+//
+//    };
 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    Toast.makeText(mContext, "DOWN", Toast.LENGTH_SHORT).show();
-                    swipeRefreshLayout.setRefreshing(false);
-
-                    adapter.getLists().clear();
-                    addList();
-                    break;
-                case 1:
-                    Toast.makeText(mContext, "UP", Toast.LENGTH_SHORT).show();
-                    addList();
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-    };
-
-    private void addList() {
-        List<Integer> list = getList();
-        adapter.getLists().addAll(list);
-        adapter.notifyDataSetChanged();
-    }
-    private List<Integer> getList() {
-        List<Integer> list = new ArrayList<Integer>();
-        int size = adapter.getLists().size();
-        int lastPosition = size > 0 ? adapter.getLists().get(size - 1) : 0;
-        for (int i = 1; i < 20; i++) {
-            list.add(lastPosition + i);
-        }
-        return list;
-    }
 
 
 }
