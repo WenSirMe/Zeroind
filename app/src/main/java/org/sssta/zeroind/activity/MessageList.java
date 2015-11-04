@@ -17,10 +17,22 @@ import android.widget.Toast;
 
 import org.sssta.zeroind.R;
 import org.sssta.zeroind.adapter.MessageListAdapter;
+import org.sssta.zeroind.model.Message;
+import org.sssta.zeroind.model.User;
+import org.sssta.zeroind.service.BaseService;
+import org.sssta.zeroind.service.response.InfoResponse;
+import org.sssta.zeroind.service.response.MessageResponse;
+import org.sssta.zeroind.util.SharedPreferenceUtil;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import jp.wasabeef.recyclerview.animators.FadeInDownAnimator;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MessageList extends AppCompatActivity implements MessageListAdapter.MainRecyclerListener {
 
@@ -55,7 +67,7 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
         setSupportActionBar(toolbar);
 
         messageRecyclerList.setLayoutManager(new LinearLayoutManager(this));
-        MessageListAdapter adapter = new MessageListAdapter(this);
+        final MessageListAdapter adapter = new MessageListAdapter(this);
         adapter.setMainRecyclerListener(this);
         messageRecyclerList.setAdapter(adapter);
         messageRecyclerList.setItemAnimator(new FadeInDownAnimator());
@@ -64,26 +76,50 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
             @Override
             public void onRefresh() {
                 swipeMessageLayout.setRefreshing(true);
-                AsyncTask asyncTask = new AsyncTask() {
+                Call<MessageResponse> call = BaseService
+                        .getMessageService()
+                        .getUnReadMessage(SharedPreferenceUtil.getInstance().getToken());
+                call.enqueue(new Callback<MessageResponse>() {
                     @Override
-                    protected Object doInBackground(Object[] params) {
-                        try{
-                            Thread.sleep(2000);
-                        }catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
-                        return 1;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Object o) {
-                        if (o.equals(1)){
-                            Toast.makeText(MessageList.this,"Good",Toast.LENGTH_LONG).show();
+                    public void onResponse(Response<MessageResponse> response, Retrofit retrofit) {
+                        MessageResponse messageResponse = response.body();
+                        if (messageResponse !=null && messageResponse.getStatus()==0){
+                            adapter.updateUserMessage((ArrayList<Message>) messageResponse.getUnReadMessageList());
+                            Toast.makeText(getApplicationContext(), "刷新成功", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getApplicationContext(), "刷新失败", Toast.LENGTH_SHORT).show();
                         }
                         swipeMessageLayout.setRefreshing(false);
                     }
-                };
-                asyncTask.execute();
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        swipeMessageLayout.setRefreshing(false);
+                        Toast.makeText(getApplicationContext(), "刷新失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+//                AsyncTask asyncTask = new AsyncTask() {
+//                    @Override
+//                    protected Object doInBackground(Object[] params) {
+//                        try{
+//                            Thread.sleep(2000);
+//                        }catch (InterruptedException e){
+//                            e.printStackTrace();
+//                        }
+//
+//                        return 1;
+//                    }
+//
+//                    @Override
+//                    protected void onPostExecute(Object o) {
+//                        if (o.equals(1)){
+//                            Toast.makeText(MessageList.this,"Good",Toast.LENGTH_LONG).show();
+//                        }
+//                        swipeMessageLayout.setRefreshing(false);
+//                    }
+//                };
+//                asyncTask.execute();
             }
         });
     }

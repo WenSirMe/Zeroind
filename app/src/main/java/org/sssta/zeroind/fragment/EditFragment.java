@@ -6,13 +6,19 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.sssta.zeroind.R;
+import org.sssta.zeroind.util.SharedPreferenceUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +32,7 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class EditFragment extends Fragment {
-    SharedPreferences sp;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,7 +74,10 @@ public class EditFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        windEditText.setText(sp.getString("default",""));
+        windEditText.setText(
+                SharedPreferenceUtil
+                        .getInstance()
+                        .getPostFragmentTempEditText());
     }
 
     @Override
@@ -78,7 +87,7 @@ public class EditFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        sp = getActivity().getSharedPreferences("TempEdit", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -93,6 +102,25 @@ public class EditFragment extends Fragment {
                 mListener.editActivityDown();
             }
         });
+        windEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                SharedPreferenceUtil
+                        .getInstance()
+                        .setPostFragmentTempEditText(windEditText.getText().toString());
+            }
+        });
+
         return view;
     }
 
@@ -142,8 +170,6 @@ public class EditFragment extends Fragment {
 
         void editActivityDown();
     }
-    public String getEditTextContent(){
-        return windEditText.getText().toString();
-    }
+
 
 }

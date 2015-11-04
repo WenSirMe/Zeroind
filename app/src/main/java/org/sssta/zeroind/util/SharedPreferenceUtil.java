@@ -106,5 +106,12 @@ public class SharedPreferenceUtil {
     public String getSignature() {
         return mSharePreferences.getString(Constants.SP_SIGNATURE,"签名");
     }
+    public void setPostFragmentTempEditText(String tempEditText){
+        mEditor.putString("PostTempText",tempEditText);
+        mEditor.commit();
+    }
+    public String getPostFragmentTempEditText(){
+        return mSharePreferences.getString("PostTempText","");
+    }
 
 }

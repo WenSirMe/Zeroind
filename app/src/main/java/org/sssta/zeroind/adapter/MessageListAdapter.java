@@ -12,8 +12,11 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import org.sssta.zeroind.R;
+import org.sssta.zeroind.model.Message;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,13 +29,14 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     private Context context;
-    public static int ItemCount = 10;
+    public static int ItemCount = 0;
     private static final int ITEM_TYPE_TEXT = 1;
     private static final int ITEM_TYPE_IMAGE = 2;
     private static final int READ_MESSAGE = 1;
     private static final int THROW_MESSAGE= 2;
     private static final int BURN_MESSAGE= 3;
     private static final int CONTENT_IMAGE = 4;
+    private static ArrayList<Message> messageList = new ArrayList<>();
     private MainRecyclerListener mainRecyclerListener;
     private final ArrayList<ArrayList<Object>> ItemList = new ArrayList<>();
 
@@ -73,6 +77,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return ItemCount;
     }
 
+    public void setItemCount(int count){
+        ItemCount = count;
+    }
     @Override
     public int getItemViewType(int position) {
         return position % 2 == 0 ? ITEM_TYPE_TEXT : ITEM_TYPE_IMAGE;
@@ -98,8 +105,13 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         startViewHolder.burnMessage.setTag(R.id.tag_second, position);
         startViewHolder.throwMessage.setTag(R.id.tag_second, position);
         startViewHolder.readMessage.setTag(R.id.tag_second, position);
+
+        startViewHolder.abbrMessage.setText(messageList.get(position).getContent());
+        //startViewHolder.userLevel.setText(messageList.get(position).);
+        //此处应从后端获得
+        startViewHolder.userLevel.setText(String.valueOf((int)(Math.random()*12)));
         YoYo.with(Techniques.FlipInX).playOn(startViewHolder.itemView);
-        updateItem(holder);
+
     }
 
 
@@ -111,10 +123,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
 
-    private void updateItem(RecyclerView.ViewHolder viewHolder) {
 
-        //notifyDataSetChanged();
-    }
 
     public void setMainRecyclerListener(MainRecyclerListener mainRecyclerListener) {
         this.mainRecyclerListener = mainRecyclerListener;
@@ -131,12 +140,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void bindItemContent() {
-        int i;
-        ItemList.clear();
-        for (i = 0; i < ItemCount; i++) {
-            ArrayList UserMessage = getUserMessage(i % 2);
-            ItemList.add(UserMessage);
-        }
+
     }
 
     public static class StartViewHolder extends RecyclerView.ViewHolder {
@@ -158,22 +162,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    private ArrayList getUserMessage(int MessageIndex) {
-        ArrayList<Object> UserMessage = new ArrayList<>();
-        switch (MessageIndex) {
-            case 0:
-                UserMessage.add(1);
-                UserMessage.add("张渣渣");
-                UserMessage.add("现在，触手可及。未来，妙不可言。");
-                break;
-            case 1:
-                UserMessage.add(2);
-                UserMessage.add("林大神");
-                UserMessage.add("未来，妙不可言。现在，触手可及。");
-                break;
-        }
 
-        return UserMessage;
+    public void updateUserMessage(ArrayList<Message> mList){
+        messageList = mList;
+        setItemCount(messageList.size());
+        notifyDataSetChanged();
     }
 
     public interface MainRecyclerListener {
@@ -184,6 +177,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public void onReadMessageClick(View v, int position);
 
     }
+
 
 }
 

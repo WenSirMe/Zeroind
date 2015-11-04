@@ -60,7 +60,7 @@ public class RotateCircleView extends View{
                 setRotation(remixRotation(getRotation() + drot));
                 Log.i("rot rot", String.valueOf(nrot) + " " + String.valueOf(lastRotation));
                 if (rotationChangeListener!=null){
-                    //There will do something at Activity.
+                    rotationChangeListener.rotationChange((int)remixRotation(getRotation() + drot));
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -77,9 +77,9 @@ public class RotateCircleView extends View{
         return rot;
     }
     public interface RotationChangeListener{
-        void rotationChange(String str);
+        void rotationChange(int rotation);
     }
-    public void setWindFlagChangeListener(RotationChangeListener rotationChangeListener){
+    public void setOnWindFlagChangeListener(RotationChangeListener rotationChangeListener){
         this.rotationChangeListener = rotationChangeListener;
     }
 }

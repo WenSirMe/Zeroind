@@ -8,8 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.R;
+import org.sssta.zeroind.ui.RotateCircleView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +33,12 @@ public class ChooseWindFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     @Bind(R.id.wind_edit_up)
     Button windEditUp;
+    @Bind(R.id.rotate_flag)
+    RotateCircleView rotateFlag;
+    @Bind(R.id.wind_flag_changed)
+    ImageView windFlagChanged;
+    @Bind(R.id.wind_flag_name_text)
+    TextView windFlagNameText;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -79,6 +89,13 @@ public class ChooseWindFragment extends Fragment {
                 mListener.editActivityUp();
             }
         });
+        rotateFlag.setOnWindFlagChangeListener(new RotateCircleView.RotationChangeListener() {
+            @Override
+            public void rotationChange(int rotation) {
+                windFlagChanged.setRotation(rotation);
+                windFlagNameText.setText(NContent.WIND_FLAG_NAME[rotation/45]);
+            }
+        });
         return view;
     }
 
@@ -125,6 +142,7 @@ public class ChooseWindFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+
         void editActivityUp();
     }
 

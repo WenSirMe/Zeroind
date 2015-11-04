@@ -11,7 +11,7 @@ import retrofit.Retrofit;
 public class BaseService {
     private static Retrofit mRetrofit;
     private static UserService mUserService;
-
+    private static MessageService mMessageService;
     private static Retrofit getRetrofit() {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
@@ -27,6 +27,12 @@ public class BaseService {
             mUserService = getRetrofit().create(UserService.class);
         }
         return mUserService;
+    }
+    public static MessageService getMessageService(){
+        if (mMessageService == null){
+            mMessageService = getRetrofit().create(MessageService.class);
+        }
+        return mMessageService;
     }
 
 }

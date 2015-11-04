@@ -1,5 +1,7 @@
 package org.sssta.zeroind.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Heaven on 2015/10/25.
  */
@@ -7,12 +9,17 @@ public class Message {
     private String content;
     private String sex;
     private int hp;
+    @SerializedName("wind_direction")
     private int windDirection;
+    @SerializedName("from_uid")
     private int fromUid;
     private int id;
+    @SerializedName("to_uid")
     private int toUid;
     private int status;
     private int count;
+    @SerializedName("from_level")
+    private int fromLevel;
     private String imgID;
 
     public String getContent() {
@@ -95,7 +102,7 @@ public class Message {
         this.status = status;
     }
 
-    public Message(String content, String sex, int count, int hp, int windDirection, int fromUid, int id, int toUid, int status, int count1, String imgID) {
+    public Message(String content, String sex, int count, int hp, int windDirection, int fromUid, int id, int toUid, int status, String imgID) {
         this.content = content;
         this.sex = sex;
         this.count = count;
@@ -105,7 +112,6 @@ public class Message {
         this.id = id;
         this.toUid = toUid;
         this.status = status;
-        count = count1;
         this.imgID = imgID;
     }
 }

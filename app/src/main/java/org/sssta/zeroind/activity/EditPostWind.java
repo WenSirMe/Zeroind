@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 public class EditPostWind extends AppCompatActivity implements EditFragment.OnFragmentInteractionListener,ChooseWindFragment.OnFragmentInteractionListener {
 
 
-    SharedPreferences sp;
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -31,7 +31,7 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
     public void editActivityDown() {
         final FragmentTransaction transaction =  getFragmentManager().beginTransaction();
 
-        saveTempEditContent(editFragment.getEditTextContent());
+
 
         transaction.replace(R.id.edit_page_frame, windFragment);
         transaction.commit();
@@ -58,7 +58,7 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
         init();
     }
     private void init(){
-        sp = getSharedPreferences("TempEdit", Context.MODE_PRIVATE);
+
         editFragment.setEnterTransition(new Slide(Gravity.TOP).setInterpolator(new OvershootInterpolator(2.5F)).setStartDelay(800));
         windFragment.setEnterTransition(new Slide(Gravity.BOTTOM).setInterpolator(new OvershootInterpolator(2.5F)).setStartDelay(800));
 
@@ -68,7 +68,5 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.edit_page_frame, editFragment).commit();
     }
-    private void saveTempEditContent(String string){
-        sp.edit().putString("default",string).apply();
-    }
+
 }
