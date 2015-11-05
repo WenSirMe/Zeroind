@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import org.sssta.zeroind.Constants;
+import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.activity.MyApplication;
 import org.sssta.zeroind.model.User;
 
@@ -106,12 +107,12 @@ public class SharedPreferenceUtil {
     public String getSignature() {
         return mSharePreferences.getString(Constants.SP_SIGNATURE,"签名");
     }
-    public void setPostFragmentTempEditText(String tempEditText){
-        mEditor.putString("PostTempText",tempEditText);
+    public void setPostFragmentTempEditText(int textActivityIndex,String tempEditText){
+        mEditor.putString(NContent.TEMP_TEXT_FROM_ACTIVITY[textActivityIndex],tempEditText);
         mEditor.commit();
     }
-    public String getPostFragmentTempEditText(){
-        return mSharePreferences.getString("PostTempText","");
+    public String getPostFragmentTempEditText(int textActivityIndex){
+        return mSharePreferences.getString(NContent.TEMP_TEXT_FROM_ACTIVITY[textActivityIndex],"");
     }
 
 }

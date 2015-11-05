@@ -5,7 +5,7 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_read_wind_message"
-    tools:context="org.sssta.zeroind.activity.ReadWindMessage"
+    tools:context="org.sssta.zeroind.activity.ReadMessageActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87B6EA"
@@ -31,20 +31,23 @@
                 android:layout_height="wrap_content"
                 android:text="66666"
                 android:textSize="18sp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:id="@+id/message_level_text"/>
         </LinearLayout>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="666666666666666666晋太元中武陵人捕鱼为业缘溪行忘路之远近"/>
+            android:text=""
+            android:id="@+id/message_content_text"/>
         <ImageView
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerInside"
-            android:src="@drawable/item_big_map"/>
+            android:src="@drawable/item_big_map"
+            android:id="@+id/message_image"/>
 
     </LinearLayout>
     <ImageButton
@@ -53,7 +56,8 @@
         android:layout_weight="0.35"
         android:background="@color/button_dark_middle_blue"
         android:src="@drawable/ic_request_message"
-       />
+        android:id="@+id/leap_edit_button"
+        />
 
 </LinearLayout>
 

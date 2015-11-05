@@ -1,6 +1,7 @@
 package org.sssta.zeroind.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+
+import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.R;
 import org.sssta.zeroind.model.Message;
 
@@ -177,7 +180,14 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public void onReadMessageClick(View v, int position);
 
     }
-
+    public Bundle getItemContent(int position){
+        if (position<0||position>ItemCount) return null;
+        Message message = messageList.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putString(NContent.INFO_MESSAGE_CONTENT,message.getContent());
+        bundle.putInt(NContent.INFO_MESSAGE_DIRECTION, message.getWindDirection());
+        return bundle;
+    }
 
 }
 

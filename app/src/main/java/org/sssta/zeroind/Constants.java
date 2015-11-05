@@ -4,9 +4,9 @@ package org.sssta.zeroind;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.0.90:8000/windflow/";
+    public static final String BASE_URL = "http://115.28.65.29:8000/windflow/";
 
-    public static final String BASE_IMAGE_LOAD = "http://192.168.0.90:8000/media/images/";
+    public static final String BASE_IMAGE_LOAD = "http://115.28.65.29:8000/media/images/";
     public static final String PHOTO_TYPE = ".jpg";
 
     public static final String SHAREDPREFERENCES_NAME = "winblows";

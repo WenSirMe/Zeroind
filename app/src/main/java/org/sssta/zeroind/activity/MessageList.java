@@ -1,26 +1,22 @@
 package org.sssta.zeroind.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.Toast;
 
+import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.R;
 import org.sssta.zeroind.adapter.MessageListAdapter;
 import org.sssta.zeroind.model.Message;
-import org.sssta.zeroind.model.User;
 import org.sssta.zeroind.service.BaseService;
-import org.sssta.zeroind.service.response.InfoResponse;
 import org.sssta.zeroind.service.response.MessageResponse;
 import org.sssta.zeroind.util.SharedPreferenceUtil;
 
@@ -40,7 +36,7 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
     RecyclerView messageRecyclerList;
     @Bind(R.id.swipe_message_layout)
     SwipeRefreshLayout swipeMessageLayout;
-
+    final MessageListAdapter adapter  = new MessageListAdapter(this);
     @Override
     public void onBurnMessageClick(View v, int position) {
 
@@ -53,7 +49,8 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
 
     @Override
     public void onReadMessageClick(View v, int position) {
-        Intent intent = new Intent(this, ReadWindMessage.class);
+        Intent intent = new Intent(this, ReadMessageActivity.class);
+        intent.putExtra(NContent.INFO_MESSAGE_ALL,adapter.getItemContent(position));
         getWindow().setExitTransition(new Explode().setInterpolator(new AnticipateInterpolator()));
         startActivity(intent);
     }
@@ -67,7 +64,7 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
         setSupportActionBar(toolbar);
 
         messageRecyclerList.setLayoutManager(new LinearLayoutManager(this));
-        final MessageListAdapter adapter = new MessageListAdapter(this);
+
         adapter.setMainRecyclerListener(this);
         messageRecyclerList.setAdapter(adapter);
         messageRecyclerList.setItemAnimator(new FadeInDownAnimator());

@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 
+import org.sssta.zeroind.util.MathUtil;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -20,6 +22,17 @@ public class RotateCircleView extends View{
     float nrot=0,drot=0;
     RotationChangeListener rotationChangeListener;
     RotateSlowAnimator rotateSlowAnimator;
+
+    @Override
+    public void setRotation(float rotation) {
+        float mRemixedRotation = MathUtil.remixRotation(rotation);
+        super.setRotation(mRemixedRotation);
+        if (rotationChangeListener!=null){
+            rotationChangeListener.rotationChange((int)mRemixedRotation);
+        }
+        //Log.i("rotation",String.valueOf(rotation));
+    }
+
     public RotateCircleView(Context context) {
         super(context);
     }
@@ -57,25 +70,19 @@ public class RotateCircleView extends View{
 
                 nrot = (float)Math.toDegrees(Math.atan2(touchY, touchX));
                 drot = nrot - lastRotation;
-                setRotation(remixRotation(getRotation() + drot));
-                Log.i("rot rot", String.valueOf(nrot) + " " + String.valueOf(lastRotation));
-                if (rotationChangeListener!=null){
-                    rotationChangeListener.rotationChange((int)remixRotation(getRotation() + drot));
-                }
+                setRotation(getRotation() + drot);
+
+
                 break;
             case MotionEvent.ACTION_UP:
-              rotateSlowAnimator = new
+                rotateSlowAnimator = new
                         RotateSlowAnimator(this,drot*100,(int)getRotation());
                 rotateSlowAnimator.start();
                 break;
         }
         return true;
     }
-    private float remixRotation(float rot){
-        rot = rot % 360;
-        if (rot<0) rot+=360;
-        return rot;
-    }
+
     public interface RotationChangeListener{
         void rotationChange(int rotation);
     }

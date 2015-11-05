@@ -1,64 +1,33 @@
 package org.sssta.zeroind.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.R;
-import org.sssta.zeroind.model.Message;
-import org.sssta.zeroind.service.BaseService;
-import org.sssta.zeroind.service.response.MessageResponse;
-import org.sssta.zeroind.service.response.ResponseStatus;
-import org.sssta.zeroind.ui.RotateCircleView;
-import org.sssta.zeroind.util.SharedPreferenceUtil;
-
-import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {@link ReadMessageFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ChooseWindFragment#newInstance} factory method to
+ * Use the {@link ReadMessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ChooseWindFragment extends Fragment {
+public class ReadMessageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @Bind(R.id.wind_edit_up)
-    Button windEditUp;
-    @Bind(R.id.rotate_flag)
-    RotateCircleView rotateFlag;
-    @Bind(R.id.wind_flag_changed)
-    ImageView windFlagChanged;
-    @Bind(R.id.wind_flag_name_text)
-    TextView windFlagNameText;
-    @Bind(R.id.submit_content_button)
-    ImageButton submitContentButton;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private int wind_direction = 0;
+
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -67,11 +36,11 @@ public class ChooseWindFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ChooseWindFragment.
+     * @return A new instance of fragment ReadMessage_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ChooseWindFragment newInstance(String param1, String param2) {
-        ChooseWindFragment fragment = new ChooseWindFragment();
+    public static ReadMessageFragment newInstance(String param1, String param2) {
+        ReadMessageFragment fragment = new ReadMessageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,7 +48,7 @@ public class ChooseWindFragment extends Fragment {
         return fragment;
     }
 
-    public ChooseWindFragment() {
+    public ReadMessageFragment() {
         // Required empty public constructor
     }
 
@@ -96,10 +65,7 @@ public class ChooseWindFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_choose_wind, container, false);
-        ButterKnife.bind(this, view);
-        initInjectView();
-        return view;
+        return inflater.inflate(R.layout.fragment_read_message, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -126,12 +92,6 @@ public class ChooseWindFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -145,31 +105,6 @@ public class ChooseWindFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
-
-        void editActivityUp(int model,int direction);
     }
-    private void initInjectView(){
-        windFlagChanged.setRotation(90);
-        windEditUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.editActivityUp(0,wind_direction);
-            }
-        });
-        rotateFlag.setOnWindFlagChangeListener(new RotateCircleView.RotationChangeListener() {
-            @Override
-            public void rotationChange(int rotation) {
-                windFlagChanged.setRotation(rotation+90);
-                wind_direction = rotation / 45;
-                windFlagNameText.setText(NContent.WIND_FLAG_NAME[wind_direction]);
 
-            }
-        });
-        submitContentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.editActivityUp(1,wind_direction);
-            }
-        });
-    }
 }

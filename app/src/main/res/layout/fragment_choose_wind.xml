@@ -5,11 +5,10 @@
     tools:context="org.sssta.zeroind.fragment.ChooseWindFragment">
 <Button
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
+    android:layout_height="30dp"
     android:id="@+id/wind_edit_up"/>
 <RelativeLayout
-    android:layout_weight="1.5"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -69,6 +68,13 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/rotate_flag"
         android:background="@drawable/bg_base_box_2"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:id="@+id/submit_content_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
 </LinearLayout>

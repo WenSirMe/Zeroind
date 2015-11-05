@@ -26,7 +26,7 @@ public interface MessageService {
     @POST("postMsg.do")
     Call<ResponseStatus> postMessage(
             @Field("token") String token,
-            @Field("wind_direction") String wind_direction,
+            @Field("wind_direction") int wind_direction,
             @Field("content") String content,
             @Field("img_id") String img_id);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.sssta.zeroind" >
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".activity.MyApplication"
         android:allowBackup="true"
@@ -35,7 +35,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".activity.ReadWindMessage"
+            android:name=".activity.ReadMessageActivity"
             android:label="@string/title_activity_read_wind_message"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
