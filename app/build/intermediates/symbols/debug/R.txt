@@ -603,7 +603,7 @@ int drawable circle 0x7f020045
 int drawable design_fab_background 0x7f020046
 int drawable design_snackbar_background 0x7f020047
 int drawable ehhe 0x7f020048
-int drawable errer_image 0x7f020049
+int drawable error_image 0x7f020049
 int drawable flip 0x7f02004a
 int drawable forword_message 0x7f02004b
 int drawable ic_home_black_24dp 0x7f02004c

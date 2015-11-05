@@ -98,7 +98,7 @@ public class PlaneReceive extends BaseFragment implements AnimationRecycler.OnRe
             }
         });
 //        recyclerViewReceive.addView(headerLayout,0);
-        recyclerViewReceive.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerViewReceive.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView,
                                              int newState) {

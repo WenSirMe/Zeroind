@@ -2354,7 +2354,7 @@ containing a value of this type.
         public static final int design_fab_background=0x7f020046;
         public static final int design_snackbar_background=0x7f020047;
         public static final int ehhe=0x7f020048;
-        public static final int error_image =0x7f020049;
+        public static final int error_image=0x7f020049;
         public static final int flip=0x7f02004a;
         public static final int forword_message=0x7f02004b;
         public static final int ic_home_black_24dp=0x7f02004c;

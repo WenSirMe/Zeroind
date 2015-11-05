@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
     void initView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_left);
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
-        userImage = (CircleImageView) findViewById(R.id.navigation_user_image);
-        userName = (TextView) findViewById(R.id.navigation_userName);
-        userSign = (TextView) findViewById(R.id.navigation_userSign);
-        ImageView imageView = (ImageView) findViewById(R.id.navigation_user_image);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        View navigationHeader = mNavigationView.inflateHeaderView(R.layout.navigation_header);
+        userImage = (CircleImageView) navigationHeader.findViewById(R.id.navigation_user_image);
+        userName = (TextView) navigationHeader.findViewById(R.id.navigation_userName);
+        userSign = (TextView) navigationHeader.findViewById(R.id.navigation_userSign);
+        userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, UserActivity.class);
@@ -223,9 +223,6 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
 //                startActivity(intent);
 //                break;
             case R.id.menu_item_one:
-//                intent = new Intent(mContext, RegisterActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.anim_activity_in,R.anim.null_anim);
                 SharedPreferenceUtil.getInstance().setLogin(false);
                 lgActivity = true;
                 break;
