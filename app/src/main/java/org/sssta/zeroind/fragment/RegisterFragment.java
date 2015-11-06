@@ -223,7 +223,9 @@ public class RegisterFragment extends android.support.v4.app.Fragment {
     }
 
     public interface RegisterListener{
-        public void register(String userName, String password, String sex);
+
+        public void register(String userName,String password,String sex);
+
     }
 
     public String getSex() {

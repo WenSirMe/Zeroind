@@ -1,7 +1,12 @@
 package org.sssta.zeroind.ui;
 
 import android.content.Context;
+
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.os.Handler;
+import android.os.Message;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -113,7 +118,9 @@ public class AnimationRecycler extends RecyclerView {
             super.onScrolled(recyclerView, dx, dy);
             if (mLinearLayoutManager!=null) {
                 headerState = mLinearLayoutManager.findFirstVisibleItemPosition();
-                Log.d("headerState", headerState + "");
+
+                Log.d("headerState",headerState+"");
+
             }
         }
     };
@@ -136,6 +143,11 @@ public class AnimationRecycler extends RecyclerView {
     }
 
 
+    @Override
+    public void onDrawForeground(Canvas canvas) {
+        super.onDrawForeground(canvas);
+    }
+
 
     private void measureView(View child) {
         ViewGroup.LayoutParams params = child.getLayoutParams();
@@ -149,11 +161,13 @@ public class AnimationRecycler extends RecyclerView {
         int lpHeight = params.height;
         int childHeightSpec;
         if (lpHeight > 0) {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight,
-                    View.MeasureSpec.EXACTLY);
+
+            childHeightSpec = MeasureSpec.makeMeasureSpec(lpHeight,
+                    MeasureSpec.EXACTLY);
         } else {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(0,
-                    View.MeasureSpec.UNSPECIFIED);
+            childHeightSpec = MeasureSpec.makeMeasureSpec(0,
+                    MeasureSpec.UNSPECIFIED);
+
         }
         child.measure(childWidthSpec, childHeightSpec);
     }
@@ -190,7 +204,9 @@ public class AnimationRecycler extends RecyclerView {
         measureView(headerImage);
         headerContentHeight = headerLayout.getMeasuredHeight();
         headerImageHeight = headerImage.getMeasuredWidth();
-        Log.d("height", "headerContent " + headerContentHeight + " headerimage " + headerImageHeight);
+
+        Log.d("height","headerContent "+headerContentHeight + " headerimage " + headerImageHeight);
+
         // 设置内边距，正好距离顶部为一个负的整个布局的高度，正好把头部隐藏
         headerLayout.setPadding(0, -1 * headerContentHeight, 0, 0);
         // 重绘一下
@@ -216,8 +232,10 @@ public class AnimationRecycler extends RecyclerView {
                     if (!isRecored) {
                         isRecored = true;
 
+                        /////////////////
                         if (timer!=null)
                         timer.cancel();
+                        runTimer();
 
                         startY = (int) e.getY();   // 手指按下时记录当前位置
                     }
@@ -284,6 +302,8 @@ public class AnimationRecycler extends RecyclerView {
                                 if (timer!=null)
                                 timer.cancel();
 
+                                runTimer();
+
                                 changeHeaderViewByState();
                             }
                         }
@@ -303,7 +323,9 @@ public class AnimationRecycler extends RecyclerView {
                         }
 
                     }
-                    Log.d("refresh state", state + "");
+
+                    Log.d("refresh state",state+"");
+
                     break;
 
                 default:
@@ -339,7 +361,9 @@ public class AnimationRecycler extends RecyclerView {
     }
     private void changeHeaderViewByState() {
 
-        Log.d("state state", state + "");
+
+        Log.d("state state",state+"");
+
         switch (state) {
             case RELEASE_To_REFRESH:
                 break;
@@ -361,7 +385,10 @@ public class AnimationRecycler extends RecyclerView {
 //                headerImage.setVisibility(View.GONE);
                 break;
             case DONE:
-                headerLayout.setPadding(0, -1 * headerContentHeight, 0, 0);
+
+                myHandler.sendEmptyMessage(0);
+//                headerLayout.setPadding(0, -1 * headerContentHeight, 0, 0);
+
 //                headerImage.clearAnimation();
                 isRefreshable = false;
                 break;
@@ -399,11 +426,64 @@ public class AnimationRecycler extends RecyclerView {
     }
 
     private void setDegress(float degress) {
-        this.degress = (float) Math.sqrt(degress / headerContentHeight)*multiple_degress;
-        Log.d("degress", this.degress + "");
+
+        this.degress = (float)Math.sqrt(degress / headerContentHeight)*multiple_degress;
+        Log.d("degress",this.degress+"");
     }
 
+    final Handler myHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    if (headerPadding>0) {
+                        headerPadding*=0.9f;
+                        headerLayout.setPadding(0, (int)(headerPadding/radio - headerContentHeight), 0, 0);
+                        return;
+                    }
+                    timer.cancel();
+                    total_degress = 0;
+                    headerImage.setRotation(total_degress);
+                    break;
+                case 1:
+                    total_degress = (total_degress+degress)%360;
+                    headerImage.setRotation(total_degress);
+                    break;
+                case 2:
+//                    if (headerPadding/radio > headerContentHeight) {
+//                        headerPadding*=0.9f;
+//                        headerLayout.setPadding(0, (int)(headerPadding/radio - headerContentHeight), 0, 0);
+//                    } else {
+//                        headerPadding = headerContentHeight;
+//                        headerLayout.setPadding(0,0,0,0);
+//                    }
+                    total_degress = (total_degress+degress)%360;
+                    headerImage.setRotation(total_degress);
+                default:
+            }
+        }
+    };
 
+    private class MyTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+//            Log.d("stateNormal",state+"");
+            if (state==DONE) {
+                myHandler.sendEmptyMessage(0);
+            } else if (state == REFRESHING) {
+                myHandler.sendEmptyMessage(2);
+            } else {
+                myHandler.sendEmptyMessage(1);
+            }
+        }
+    }
+
+    private void runTimer() {
+        timer = new Timer();
+        timerTask = new MyTimerTask();
+        timer.schedule(timerTask,0,10);
+    }
 
 
 }

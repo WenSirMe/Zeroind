@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.Toast;
@@ -81,6 +82,7 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
                     public void onResponse(Response<MessageResponse> response, Retrofit retrofit) {
                         MessageResponse messageResponse = response.body();
                         if (messageResponse !=null && messageResponse.getStatus()==0){
+                            Log.i("data",messageResponse.getUnReadMessageList().toString());
                             adapter.updateUserMessage((ArrayList<Message>) messageResponse.getUnReadMessageList());
                             Toast.makeText(getApplicationContext(), "刷新成功", Toast.LENGTH_SHORT).show();
                         }else {

@@ -31,9 +31,10 @@
     <dimen name="setting_Linear_height">30dp</dimen>
     <dimen name="back_image_margin">15dp</dimen>
     <dimen name="userinfo_image_margin">50dp</dimen>
+
+    <dimen name="mailbox_padding">21dp</dimen>
     <dimen name="spinner_item_height">48dp</dimen>
     <dimen name="spinner_item_padding">3dp</dimen>
     <dimen name="text_to_image_margin">10dp</dimen>
-    <dimen name="mailbox_padding">21dp</dimen>
 
 </resources>

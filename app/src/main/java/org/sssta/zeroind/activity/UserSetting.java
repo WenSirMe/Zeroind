@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +21,7 @@ import org.sssta.zeroind.R;
 import org.sssta.zeroind.service.BaseService;
 import org.sssta.zeroind.service.response.ImageLoadResponse;
 import org.sssta.zeroind.service.response.ResponseStatus;
+import org.sssta.zeroind.ui.CircleImageView;
 import org.sssta.zeroind.util.SharedPreferenceUtil;
 import org.sssta.zeroind.util.TextUtil;
 import com.squareup.okhttp.MediaType;
@@ -41,9 +41,6 @@ import retrofit.Retrofit;
 
 public class UserSetting extends AppCompatActivity {
 
-    public final String[] directions = new String[]{"00", "11", "22", "33", "44", "55", "66", "77", "88"
-
-    };
     private Context mContext;
 
 
@@ -56,7 +53,7 @@ public class UserSetting extends AppCompatActivity {
     @Bind(R.id.new_password)
     EditText newPassword;
     @Bind(R.id.setting_image)
-    ImageView settingImage;
+    CircleImageView settingImage;
     @Bind(R.id.setting_username)
     EditText settingUsername;
     @Bind(R.id.setting_direction)
@@ -83,9 +80,12 @@ public class UserSetting extends AppCompatActivity {
 
     private void initView() {
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD+SharedPreferenceUtil.getInstance().getImg_id()
-                +Constants.PHOTO_TYPE).into(settingImage);
+                +Constants.PHOTO_TYPE)
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(settingImage);
         settingUsername.setText(SharedPreferenceUtil.getInstance().getUserName());
-        settingDirection.setText(directions[SharedPreferenceUtil.getInstance().getDirection()]);
+        settingDirection.setText(Constants.WIND_DIRS[SharedPreferenceUtil.getInstance().getDirection()]);
         settingSignature.setText(SharedPreferenceUtil.getInstance().getSignature());
         settingImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,13 +127,16 @@ public class UserSetting extends AppCompatActivity {
                             SharedPreferenceUtil.getInstance().setImageId(response.body().getImg_id());
                             isUserPhotoSelected = false;
                         } else {
-                            Toast.makeText(getApplicationContext(), "图片上传失败", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(getApplicationContext(),"图片上传失败",Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
-                        Toast.makeText(getApplicationContext(), "图片上传失败", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getApplicationContext(),"图片上传失败",Toast.LENGTH_SHORT).show();
                     }
                 });
             }

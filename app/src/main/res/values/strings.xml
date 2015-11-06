@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">WindZero</string>
-    <string name="action_settings">Settings</string>
+
+
     <string name="title_activity_choose_wind">choose_wind</string>
     <string name="title_activity_post_message">PostMessage</string>
     <string name="title_activity_edit_post_wind">EditPostWind</string>
@@ -10,6 +10,13 @@
     <string name="title_activity_read_wind_message">ReadWindMessage</string>
     <string name="title_activity_message_list">MessageList</string>
 
+
+
+
+    <string name="app_name">风零</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
 
 
     <string name="title_activity_base">BaseActivity</string>
@@ -38,7 +45,6 @@
     <string name="cancel_login">取消</string>
     <string name="title_activity_user">UserActivity</string>
 
-    //user
     <string name="user_name">用户名</string>
     <string name="user_level">等级</string>
     <string name="user_exp">经验</string>
@@ -46,5 +52,10 @@
     <string name="user_sex">性别</string>
     <string name="user_signature">签名</string>
     <string name="title_activity_user_setting">UserSetting</string>
+
     <string name="title_activity_about_us">AboutUsActivity</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
+
 </resources>

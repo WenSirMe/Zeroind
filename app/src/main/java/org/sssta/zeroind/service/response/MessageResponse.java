@@ -12,8 +12,8 @@ import java.util.List;
 public class MessageResponse {
     private int status = -1;
     private String token;
-    @SerializedName("  ")
-    private List<Message> messageList;
+
+    private List<Message> data;
 
     public int getStatus() {
         return status;
@@ -24,6 +24,6 @@ public class MessageResponse {
     }
 
     public List<Message> getUnReadMessageList() {
-        return messageList;
+        return data;
     }
 }

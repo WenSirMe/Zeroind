@@ -21,9 +21,7 @@ import butterknife.ButterKnife;
 
 public class UserActivity extends AppCompatActivity {
 
-    public final String[] directions = new String[]{"00", "11", "22", "33", "44", "55", "66", "77", "88"
 
-    };
 
     private String[] strings = new String[] {
             "男生","女生","新人类"
@@ -134,9 +132,14 @@ public class UserActivity extends AppCompatActivity {
             }
         }
         infoUserName.setText(SharedPreferenceUtil.getInstance().getUserName());
-        infoUserLevel.setText("level "+ String.valueOf(SharedPreferenceUtil.getInstance().getUserLevel()));
+
+        infoUserLevel.setText("level "+SharedPreferenceUtil.getInstance().getUserLevel());
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD + SharedPreferenceUtil.getInstance().getImg_id() +
-                Constants.PHOTO_TYPE).into(infoUserImage);
+                Constants.PHOTO_TYPE)
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(infoUserImage);
+
         infoUserSignature.setText(SharedPreferenceUtil.getInstance().getSignature());
     }
 

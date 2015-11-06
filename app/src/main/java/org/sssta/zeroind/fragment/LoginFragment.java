@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.sssta.zeroind.R;
+
+import org.sssta.zeroind.service.BaseService;
+import org.sssta.zeroind.service.response.ResponseStatus;
+
 import org.sssta.zeroind.util.TextUtil;
 
 import butterknife.Bind;

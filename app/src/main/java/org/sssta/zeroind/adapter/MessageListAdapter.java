@@ -168,7 +168,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void updateUserMessage(ArrayList<Message> mList){
         messageList = mList;
-        setItemCount(messageList.size());
+        if (messageList !=null)
+            setItemCount(messageList.size());
         notifyDataSetChanged();
     }
 

@@ -11,9 +11,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,10 +68,11 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
     void initView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_left);
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
-        userImage = (CircleImageView) findViewById(R.id.navigation_user_image);
-        userName = (TextView) findViewById(R.id.navigation_userName);
-        userSign = (TextView) findViewById(R.id.navigation_userSign);
-        //ImageView imageView = (ImageView) findViewById(R.id.navigation_user_image);
+
+        View navigationHeader = mNavigationView.inflateHeaderView(R.layout.navigation_header);
+        userImage = (CircleImageView) navigationHeader.findViewById(R.id.navigation_user_image);
+        userName = (TextView) navigationHeader.findViewById(R.id.navigation_userName);
+        userSign = (TextView) navigationHeader.findViewById(R.id.navigation_userSign);
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment,mBaseFragment[INDEX_FRAGMENT_PLANERECERIVE])
-                .replace(R.id.main_fragment,mBaseFragment[INDEX_FRAGMENT_PLANERECERIVE])
                 .commit();
         currentIndex = INDEX_FRAGMENT_PLANERECERIVE;
 
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         Intent intent;
         switch (item.getItemId()) {
             case R.id.button_receive:
@@ -227,13 +230,11 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
 //                startActivity(intent);
 //                break;
             case R.id.menu_item_one:
-                intent = new Intent(mContext, RegisterActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.null_anim);
+                SharedPreferenceUtil.getInstance().setLogin(false);
                 lgActivity = true;
                 break;
             case R.id.menu_item_about:
-                intent = new Intent(this,AboutUsActivity.class);
+                intent = new Intent(this, AboutUsActivity.class);
                 startActivity(intent);
                 lgActivity = false;
                 break;
@@ -256,7 +257,9 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
 
     public void refreshDrawer() {
         Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD+SharedPreferenceUtil.getInstance().getImg_id()+Constants.PHOTO_TYPE)
-                .error(R.drawable.errer_image).into(userImage);
+                .placeholder(R.drawable.error_image)
+                .error(R.drawable.error_image)
+                .into(userImage);
         userName.setText(SharedPreferenceUtil.getInstance().getUserName());
         userSign.setText(SharedPreferenceUtil.getInstance().getSignature());
     }

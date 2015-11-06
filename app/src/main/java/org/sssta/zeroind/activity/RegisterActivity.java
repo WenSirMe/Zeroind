@@ -1,8 +1,12 @@
 package org.sssta.zeroind.activity;
 
+
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
     private boolean isLoading = false;
     private String[] titles = new String[] {"登录","注册"};
 
+
     @Override
     public void overridePendingTransition(int enterAnim, int exitAnim) {
         super.overridePendingTransition(enterAnim, exitAnim);
@@ -132,11 +137,16 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
                     Picasso.with(mContext).load(Constants.BASE_IMAGE_LOAD +
                             SharedPreferenceUtil.getInstance().getImg_id()
                             + Constants.PHOTO_TYPE)
+
+                            .placeholder(R.drawable.error_image)
+
                             .error(R.drawable.ehhe).into(mUserImage);
 
                 } else {
                     mUserImage.setClickable(true);
-                    Picasso.with(mContext).load(R.drawable.ehhe).into(mUserImage);
+
+                    Picasso.with(mContext).load(R.drawable.ehhe).placeholder(R.drawable.error_image).into(mUserImage);
+
                 }
                 Log.d("position", position + "");
             }
@@ -177,28 +187,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
                         convertBitmap2File(imageBitmap, tempFile);
                         mUserImage.setImageBitmap(imageBitmap);
                         isUserPhotoSelected = true;
-                        RequestBody body = RequestBody.create(
-                                MediaType.parse("image/*"), tempFile);
-                        Call<ImageLoadResponse> call = BaseService.getUserService().uploadImage(body);
-                        call.enqueue(new Callback<ImageLoadResponse>() {
-                            @Override
-                            public void onResponse(Response<ImageLoadResponse> response, Retrofit retrofit) {
 
-                                if (response.body() != null && response.body().getStatus() == 0) {
-                                    imageLoad = response.body().getImg_id();
-                                    SharedPreferenceUtil.getInstance().setImageId(imageLoad);
-                                } else {
-                                    imageLoad = null;
-                                    Toast.makeText(mContext, "头像上传失败", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Throwable t) {
-                                Toast.makeText(mContext, t.toString(), Toast.LENGTH_SHORT).show();
-                                Log.d("iamgeupdate", t.toString());
-                            }
-                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -295,9 +284,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
                     SharedPreferenceUtil.getInstance().setUser(user);
                     SharedPreferenceUtil.getInstance().setToken(infoResponse.getToken());
                     Intent intent = new Intent(mContext,MainActivity.class);
+                    SharedPreferenceUtil.getInstance().setLogin(true);
                     startActivity(intent);
                     finish();
                 } else {
+                    SharedPreferenceUtil.getInstance().setLogin(false);
                     isLoading = false;
                     Toast.makeText(mContext, "登陆失败", Toast.LENGTH_SHORT).show();
                 }
@@ -305,6 +296,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
 
             @Override
             public void onFailure(Throwable t) {
+                SharedPreferenceUtil.getInstance().setLogin(false);
                 isLoading =false;
                 Toast.makeText(mContext, "error:登陆失败", Toast.LENGTH_SHORT).show();
             }
@@ -312,34 +304,66 @@ public class RegisterActivity extends AppCompatActivity implements RegisterFragm
     }
 
     @Override
-    public void register(String userName, final String password, String sex) {
-        Call<InfoResponse> call = BaseService.getUserService().register(userName,password,sex,imageLoad);
-        call.enqueue(new Callback<InfoResponse>() {
+    public void register(final String userName, final String password, final String sex) {
+        if (!isUserPhotoSelected) {
+            createTmpFile();
+            imageBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.error_image);
+            convertBitmap2File(imageBitmap, tempFile);
+            mUserImage.setImageBitmap(imageBitmap);
+        }
+       RequestBody body = RequestBody.create(
+               MediaType.parse("image/*"), tempFile);
+        Call<ImageLoadResponse> call = BaseService.getUserService().uploadImage(body);
+        call.enqueue(new Callback<ImageLoadResponse>() {
             @Override
-            public void onResponse(Response<InfoResponse> response, Retrofit retrofit) {
-                InfoResponse infoResponse = response.body();
-                if (infoResponse != null && infoResponse.getStatus() == 0) {
-                    User user = infoResponse.getUser();
-                    user.setPassword(password);
-                    SharedPreferenceUtil.getInstance().setUser(user);
-                    SharedPreferenceUtil.getInstance().setToken(infoResponse.getToken());
-                    Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT).show();
-                    SharedPreferenceUtil.getInstance().setToken(response.body().getToken());
-                    Intent intent = new Intent(mContext, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+            public void onResponse(Response<ImageLoadResponse> response, Retrofit retrofit) {
+
+                if (response.body() != null && response.body().getStatus() == 0) {
+                    imageLoad = response.body().getImg_id();
+                    SharedPreferenceUtil.getInstance().setImageId(imageLoad);
+                    Call<InfoResponse> call = BaseService.getUserService().register(userName,password,sex,imageLoad);
+                    call.enqueue(new Callback<InfoResponse>() {
+                        @Override
+                        public void onResponse(Response<InfoResponse> response, Retrofit retrofit) {
+                            InfoResponse infoResponse = response.body();
+                            if (infoResponse != null && infoResponse.getStatus() == 0) {
+                                User user = infoResponse.getUser();
+                                user.setPassword(password);
+                                SharedPreferenceUtil.getInstance().setUser(user);
+                                SharedPreferenceUtil.getInstance().setToken(infoResponse.getToken());
+                                Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT).show();
+                                SharedPreferenceUtil.getInstance().setToken(response.body().getToken());
+                                SharedPreferenceUtil.getInstance().setLogin(true);
+                                Intent intent = new Intent(mContext, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                SharedPreferenceUtil.getInstance().setLogin(false);
+                                Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_SHORT).show();
+                                isLoading = false;
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            SharedPreferenceUtil.getInstance().setLogin(false);
+                            Toast.makeText(getApplicationContext(), "error：注册失败", Toast.LENGTH_SHORT).show();
+                            isLoading = false;
+                        }
+                    });
                 } else {
-                    Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_SHORT).show();
-                    isLoading = false;
+                    imageLoad = null;
+                    Toast.makeText(mContext, "头像上传失败，请检查网络连接", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getApplicationContext(), "error 注册成功", Toast.LENGTH_SHORT).show();
-                isLoading = false;
+                Toast.makeText(mContext, t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("iamgeupdate", t.toString());
             }
         });
+
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {

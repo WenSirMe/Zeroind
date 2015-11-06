@@ -43,7 +43,9 @@ public class RecyclerWrapAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("view type", viewType + "");
+
+        Log.d("view type",viewType+"");
+
         if (viewType == RecyclerView.INVALID_TYPE) {
             HeaderViewHolder headerViewHolder = new HeaderViewHolder(headerLayout);
             return headerViewHolder;
@@ -63,7 +65,9 @@ public class RecyclerWrapAdapter extends RecyclerView.Adapter {
             return;
         }
         ((ItemViewHolder)holder).textView.setText(String.valueOf(lists.
-                get(position - (isHeaderViewSetted ? 1 : 0))));
+
+                get(position-(isHeaderViewSetted ? 1: 0))));
+
         return;
     }
 

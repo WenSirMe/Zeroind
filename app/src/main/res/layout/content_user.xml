@@ -24,7 +24,9 @@
             android:layout_marginTop="@dimen/userinfo_image_margin"
             android:layout_marginLeft="@dimen/userinfo_image_margin"
             android:id="@+id/info_userImage"
-            android:src="@mipmap/anim"
+
+            android:src="@drawable/error_image"
+
             android:layout_width="@dimen/userImage_width_height"
             android:layout_height="@dimen/userImage_width_height"/>
         <ImageView

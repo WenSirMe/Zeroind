@@ -192,7 +192,7 @@ public class EditFragment extends Fragment {
                 .postMessage(SharedPreferenceUtil.getInstance().getToken()
                         , wind_direction
                         , SharedPreferenceUtil.getInstance().getPostFragmentTempEditText(fromIndex)
-                        , "");
+                        , "null");
 
         call.enqueue(new Callback<ResponseStatus>() {
             @Override

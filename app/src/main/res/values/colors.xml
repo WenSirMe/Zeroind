@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#A5C7EC</color>
     <color name="colorPrimaryDark">#7BB1EB</color>
     <color name="colorAccent">#FFE258</color>
     <color name="button_dark_pink">#686B98</color>
     <color name="button_dark_middle_blue">#A5C7EC</color>
     <color  name="bg_light_blue">#A5C7EC</color>
+
     <color name="register_TopBackground">#A5C7EC</color>
     <color name="register_login_text">#FFFFFF</color> //TextView text background
     <color name="lg_text_line_color">#e0D4D4D4</color>
@@ -22,7 +24,9 @@
     <color name="userinfo_two">#91BBE9</color>
     <color name="userinfo_threee">#FFE258</color>
 
+
     <color name="light_title_blue">#A5C7EC</color>
     <color name="light_title_dark_blue">#A5C7EC</color>
+
 
 </resources>

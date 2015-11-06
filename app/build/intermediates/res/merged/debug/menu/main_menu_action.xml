@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/button_receive"
+        android:title="收机箱"
+        android:actionLayout="@layout/action_button"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/button_send"
+        android:title="发机箱"
+        android:actionLayout="@layout/action_button"
+        app:showAsAction = "ifRoom"/>
+</menu><!-- From: file:/D:/Developer/Android/Zeroind/app/src/main/res/menu/main_menu_action.xml -->

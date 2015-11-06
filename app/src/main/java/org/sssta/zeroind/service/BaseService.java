@@ -1,6 +1,7 @@
 package org.sssta.zeroind.service;
 
 import org.sssta.zeroind.Constants;
+import org.sssta.zeroind.model.Message;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -12,6 +13,8 @@ public class BaseService {
     private static Retrofit mRetrofit;
     private static UserService mUserService;
     private static MessageService mMessageService;
+
+
     private static Retrofit getRetrofit() {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
@@ -29,10 +32,12 @@ public class BaseService {
         return mUserService;
     }
     public static MessageService getMessageService(){
-        if (mMessageService == null){
+        if (mMessageService == null) {
             mMessageService = getRetrofit().create(MessageService.class);
         }
         return mMessageService;
     }
+
+
 
 }
