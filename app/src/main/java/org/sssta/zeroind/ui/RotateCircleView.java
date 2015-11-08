@@ -89,4 +89,9 @@ public class RotateCircleView extends View{
     public void setOnWindFlagChangeListener(RotationChangeListener rotationChangeListener){
         this.rotationChangeListener = rotationChangeListener;
     }
+    public void setRotateAnimatorEnd(){
+        if (rotateSlowAnimator != null && rotateSlowAnimator.isRunning()){
+            rotateSlowAnimator.end();
+        }
+    }
 }

@@ -169,8 +169,14 @@ public class ChooseWindFragment extends Fragment {
         submitContentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.editActivityUp(1,wind_direction);
+                mListener.editActivityUp(1, wind_direction);
             }
         });
+    }
+
+    @Override
+    public void onStop() {
+        rotateFlag.setRotateAnimatorEnd();
+        super.onStop();
     }
 }
