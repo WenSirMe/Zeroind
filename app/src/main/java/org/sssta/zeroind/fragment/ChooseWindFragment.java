@@ -2,6 +2,7 @@ package org.sssta.zeroind.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class ChooseWindFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     @Bind(R.id.wind_edit_up)
-    Button windEditUp;
+    ImageButton windEditUp;
     @Bind(R.id.rotate_flag)
     RotateCircleView rotateFlag;
     @Bind(R.id.wind_flag_changed)

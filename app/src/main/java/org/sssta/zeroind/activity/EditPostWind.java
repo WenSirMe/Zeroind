@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ import retrofit.Retrofit;
 
 public class EditPostWind extends AppCompatActivity implements EditFragment.OnFragmentInteractionListener,ChooseWindFragment.OnFragmentInteractionListener {
 
-    private int FromActivityIndex = 0;
+    private int FromActivityIndex = NContent.POST_MESSAGE;
     private int mDirection = 0;
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -47,11 +48,13 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
     public void editActivityUp(int model,int direction) {
         final FragmentTransaction transaction =  getFragmentManager().beginTransaction();
         editFragment = EditFragment.newInstance(FromActivityIndex,direction);
-        initTranstionAnimation();
+        initTransitionAnimation();
         transaction.replace(R.id.edit_page_frame, editFragment);
         transaction.commit();
-        if (model == 1)
+        if (model == 1){
             editFragment.submitTextToServer(direction);
+        }
+
     }
 
 
@@ -70,7 +73,7 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
 
     private void init(){
 
-        initTranstionAnimation();
+        initTransitionAnimation();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.edit_page_frame, editFragment).commit();
@@ -79,10 +82,12 @@ public class EditPostWind extends AppCompatActivity implements EditFragment.OnFr
         mDirection = getIntent().getIntExtra(NContent.INFO_DIRECTION_FRAGMENT,0);
     }
 
-    private void initTranstionAnimation(){
-        editFragment.setEnterTransition(new Slide(Gravity.TOP).setInterpolator(new OvershootInterpolator(2.5F)).setStartDelay(800));
-        editFragment.setExitTransition(new Slide(Gravity.TOP).setInterpolator(new AnticipateInterpolator(4.0f)).setDuration(550));
-        windFragment.setEnterTransition(new Slide(Gravity.BOTTOM).setInterpolator(new OvershootInterpolator(2.5F)).setStartDelay(800));
-        windFragment.setExitTransition(new Slide(Gravity.BOTTOM).setInterpolator(new AnticipateInterpolator(4.0f)).setDuration(550));
+    private void initTransitionAnimation(){
+        editFragment.setAllowEnterTransitionOverlap(true);
+        windFragment.setAllowEnterTransitionOverlap(true);
+        editFragment.setEnterTransition(new Slide(Gravity.TOP).setInterpolator(new AccelerateDecelerateInterpolator()));
+        editFragment.setExitTransition(new Slide(Gravity.TOP).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(150));
+        windFragment.setEnterTransition(new Slide(Gravity.BOTTOM).setInterpolator(new  AccelerateDecelerateInterpolator()));
+        windFragment.setExitTransition(new Slide(Gravity.BOTTOM).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(150));
     }
 }

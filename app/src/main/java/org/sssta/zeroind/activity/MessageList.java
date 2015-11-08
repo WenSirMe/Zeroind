@@ -83,7 +83,7 @@ public class MessageList extends AppCompatActivity implements MessageListAdapter
                         MessageResponse messageResponse = response.body();
                         if (messageResponse !=null && messageResponse.getStatus()==0){
                             Log.i("data",messageResponse.getUnReadMessageList().toString());
-                            adapter.updateUserMessage((ArrayList<Message>) messageResponse.getUnReadMessageList());
+                            adapter.updateItemData((ArrayList<Message>) messageResponse.getUnReadMessageList());
                             Toast.makeText(getApplicationContext(), "刷新成功", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getApplicationContext(), "刷新失败", Toast.LENGTH_SHORT).show();

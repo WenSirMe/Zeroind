@@ -8,7 +8,7 @@
     tools:context="org.sssta.zeroind.activity.AboutUsActivity">
     <org.sssta.zeroind.ui.ScrollTabView
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:id="@+id/scroll_tab"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/about_viewpager"

@@ -16,6 +16,10 @@ import com.daimajia.androidanimations.library.YoYo;
 import org.sssta.zeroind.NContent;
 import org.sssta.zeroind.R;
 import org.sssta.zeroind.model.Message;
+import org.sssta.zeroind.service.BaseService;
+import org.sssta.zeroind.service.response.MessageResponse;
+import org.sssta.zeroind.service.response.ResponseStatus;
+import org.sssta.zeroind.util.SharedPreferenceUtil;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,6 +27,10 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by Heaven on 2015/10/2.
@@ -41,22 +49,27 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int CONTENT_IMAGE = 4;
     private static ArrayList<Message> messageList = new ArrayList<>();
     private MainRecyclerListener mainRecyclerListener;
-    private final ArrayList<ArrayList<Object>> ItemList = new ArrayList<>();
+
 
     @Override
     public void onClick(View v) {
         int position;
         switch ((int) v.getTag(R.id.tag_first)) {
             case READ_MESSAGE:
-
+                position = (int) v.getTag(R.id.tag_second);
+                SharedPreferenceUtil
+                        .getInstance()
+                        .setLastReadMessageId(
+                                messageList.get(position).getId()
+                        );
                 if (mainRecyclerListener != null) {
-                    mainRecyclerListener.onReadMessageClick(v, (int) v.getTag(R.id.tag_second));
+                    mainRecyclerListener.onReadMessageClick(v, position);
                 }
                 break;
             case THROW_MESSAGE:
                 if (mainRecyclerListener != null) {
                     position = (int) v.getTag(R.id.tag_second);
-                    deleteItemData(position);
+                    throwMessage(position);
                     mainRecyclerListener.onThrowMessageClick(v, (int) v.getTag(R.id.tag_second));
 
                 }
@@ -64,7 +77,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             case BURN_MESSAGE:
                 if (mainRecyclerListener != null) {
                     position = (int) v.getTag(R.id.tag_second);
-                    deleteItemData(position);
+                    burnMessage(position);
                     mainRecyclerListener.onBurnMessageClick(v, (int) v.getTag(R.id.tag_second));
                 }
                 break;
@@ -90,7 +103,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (ItemList.size() == 0) bindItemContent();
+
         final StartViewHolder startViewHolder = (StartViewHolder)holder;
         if (getItemViewType(position) == ITEM_TYPE_IMAGE) {
             startViewHolder.viewHasFlag.setVisibility(View.INVISIBLE);
@@ -110,9 +123,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         startViewHolder.readMessage.setTag(R.id.tag_second, position);
 
         startViewHolder.abbrMessage.setText(messageList.get(position).getContent());
-        //startViewHolder.userLevel.setText(messageList.get(position).);
+        startViewHolder.userLevel.setText(String.valueOf(messageList.get(position).getFromLevel()));
         //此处应从后端获得
-        startViewHolder.userLevel.setText(String.valueOf((int)(Math.random()*12)));
+        //startViewHolder.userLevel.setText(String.valueOf((int)(Math.random()*12)));
         YoYo.with(Techniques.FlipInX).playOn(startViewHolder.itemView);
 
     }
@@ -132,10 +145,58 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mainRecyclerListener = mainRecyclerListener;
     }
 
-    private void deleteItemData(int position) {
-        ItemList.remove(position);
-        ItemCount = ItemList.size();
-        Log.i("ItemCount", String.valueOf(ItemCount));
+    public void updateItemData(ArrayList<Message> mList){
+        messageList = mList;
+        if (messageList !=null)
+            setItemCount(messageList.size());
+        notifyDataSetChanged();
+    }
+    private void burnMessage(int position){
+        //This will use SQLite to Save the Message,And get MessageId
+        getMessageDetail(position);
+        Call<ResponseStatus> call = BaseService
+                .getMessageService()
+                .destroyMessage(SharedPreferenceUtil.getInstance().getToken(),messageList.get(position).getId());
+        call.enqueue(new Callback<ResponseStatus>() {
+            @Override
+            public void onResponse(Response<ResponseStatus> response, Retrofit retrofit) {
+                ResponseStatus responseStatus = response.body();
+                if (responseStatus !=null && responseStatus.getStatus()==0){
+                    //delete success
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //internet over time
+            }
+        });
+        messageList.remove(position);
+        setItemCount(messageList.size());
+        notifyItemRemoved(position);
+    }
+    private void throwMessage(int position) {
+        getMessageDetail(position);
+        //Log.i("id",String.valueOf(messageList.get(position).getId()));
+        Call<ResponseStatus> call = BaseService
+                .getMessageService()
+                .forwardMessage(SharedPreferenceUtil.getInstance().getToken(),messageList.get(position).getId());
+        call.enqueue(new Callback<ResponseStatus>() {
+            @Override
+            public void onResponse(Response<ResponseStatus> response, Retrofit retrofit) {
+                ResponseStatus responseStatus = response.body();
+                if (responseStatus !=null && responseStatus.getStatus()==0){
+                    //delete success
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //internet over time
+            }
+        });
+        messageList.remove(position);
+        setItemCount(messageList.size());
         notifyItemRemoved(position);
     }
 
@@ -166,12 +227,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
 
-    public void updateUserMessage(ArrayList<Message> mList){
-        messageList = mList;
-        if (messageList !=null)
-            setItemCount(messageList.size());
-        notifyDataSetChanged();
-    }
+
+
 
     public interface MainRecyclerListener {
         public void onBurnMessageClick(View v, int position);
@@ -189,6 +246,15 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         bundle.putInt(NContent.INFO_MESSAGE_DIRECTION, message.getWindDirection());
         return bundle;
     }
+
+    private void getMessageDetail(int position){
+        BaseService
+                .getMessageService()
+                .getMessageDetail(
+                        SharedPreferenceUtil.getInstance().getToken(),
+                        messageList.get(position).getId());
+    }
+
 
 }
 

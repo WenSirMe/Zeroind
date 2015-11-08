@@ -56,7 +56,7 @@ public class ScrollTabView extends View {
         final float right = left + mTabWidth;
         final float top = getPaddingTop();
         final float bottom = getHeight() - getPaddingBottom();
-        mPaint.setColor(getResources().getColor(R.color.colorAccent));
+        mPaint.setColor(getResources().getColor(R.color.about_us_tab_color));
         canvas.drawRect(left, top, right, bottom, mPaint);
     }
 }

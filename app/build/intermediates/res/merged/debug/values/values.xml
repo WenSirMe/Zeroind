@@ -26,6 +26,11 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
+    <!-- From: file:/D:/Developer/Android/Zeroind/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="about_us_tab_color">#D5EEFF</color>
+    <!-- From: file:/D:/Developer/Android/Zeroind/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
@@ -81,6 +86,11 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <!-- From: file:/D:/Developer/Android/Zeroind/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="full_about_all_color">#BEDDFB</color>
+    <!-- From: file:/D:/Developer/Android/Zeroind/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
@@ -416,14 +426,15 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <!-- From: file:/D:/Developer/Android/Zeroind/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="title_activity_about_all">关于所有</string>
+    <string name="title_activity_about_us">关于我们</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_choose_wind">choose_wind</string>
-    <string name="title_activity_edit_post_wind">EditPostWind</string>
+    <string name="title_activity_edit_post_wind">纸飞机撰写台</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_message_list">MessageList</string>
-    <string name="title_activity_post_message">PostMessage</string>
-    <string name="title_activity_read_wind_message">ReadWindMessage</string>
+    <string name="title_activity_message_list">飞机列表</string>
+    <string name="title_activity_post_message">纸飞机折叠处</string>
+    <string name="title_activity_read_wind_message">纸飞机拆封处</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_user">UserActivity</string>
     <string name="title_activity_user_setting">UserSetting</string>

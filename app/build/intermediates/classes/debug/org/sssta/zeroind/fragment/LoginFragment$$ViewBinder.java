@@ -8,14 +8,14 @@ import butterknife.ButterKnife.ViewBinder;
 public class LoginFragment$$ViewBinder<T extends org.sssta.zeroind.fragment.LoginFragment> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131558562, "field 'editUserName'");
-    target.editUserName = finder.castView(view, 2131558562, "field 'editUserName'");
-    view = finder.findRequiredView(source, 2131558563, "field 'userNameImage'");
-    target.userNameImage = finder.castView(view, 2131558563, "field 'userNameImage'");
-    view = finder.findRequiredView(source, 2131558564, "field 'editPassword'");
-    target.editPassword = finder.castView(view, 2131558564, "field 'editPassword'");
-    view = finder.findRequiredView(source, 2131558565, "field 'passwordImage'");
-    target.passwordImage = finder.castView(view, 2131558565, "field 'passwordImage'");
+    view = finder.findRequiredView(source, 2131558566, "field 'editUserName'");
+    target.editUserName = finder.castView(view, 2131558566, "field 'editUserName'");
+    view = finder.findRequiredView(source, 2131558567, "field 'userNameImage'");
+    target.userNameImage = finder.castView(view, 2131558567, "field 'userNameImage'");
+    view = finder.findRequiredView(source, 2131558568, "field 'editPassword'");
+    target.editPassword = finder.castView(view, 2131558568, "field 'editPassword'");
+    view = finder.findRequiredView(source, 2131558569, "field 'passwordImage'");
+    target.passwordImage = finder.castView(view, 2131558569, "field 'passwordImage'");
   }
 
   @Override public void unbind(T target) {

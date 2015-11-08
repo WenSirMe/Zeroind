@@ -8,26 +8,26 @@ import butterknife.ButterKnife.ViewBinder;
 public class UserActivity$$ViewBinder<T extends org.sssta.zeroind.activity.UserActivity> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131558526, "field 'infoUserImage'");
-    target.infoUserImage = finder.castView(view, 2131558526, "field 'infoUserImage'");
-    view = finder.findRequiredView(source, 2131558529, "field 'infoUserName'");
-    target.infoUserName = finder.castView(view, 2131558529, "field 'infoUserName'");
-    view = finder.findRequiredView(source, 2131558531, "field 'infoUserLevel'");
-    target.infoUserLevel = finder.castView(view, 2131558531, "field 'infoUserLevel'");
-    view = finder.findRequiredView(source, 2131558530, "field 'sexImage'");
-    target.sexImage = finder.castView(view, 2131558530, "field 'sexImage'");
-    view = finder.findRequiredView(source, 2131558534, "field 'infoUserSignature'");
-    target.infoUserSignature = finder.castView(view, 2131558534, "field 'infoUserSignature'");
-    view = finder.findRequiredView(source, 2131558525, "field 'btBack'");
-    target.btBack = finder.castView(view, 2131558525, "field 'btBack'");
-    view = finder.findRequiredView(source, 2131558527, "field 'btSetting'");
-    target.btSetting = finder.castView(view, 2131558527, "field 'btSetting'");
-    view = finder.findRequiredView(source, 2131558535, "field 'btMailbox'");
-    target.btMailbox = finder.castView(view, 2131558535, "field 'btMailbox'");
-    view = finder.findRequiredView(source, 2131558536, "field 'btMessage'");
-    target.btMessage = finder.castView(view, 2131558536, "field 'btMessage'");
-    view = finder.findRequiredView(source, 2131558537, "field 'btWind'");
-    target.btWind = finder.castView(view, 2131558537, "field 'btWind'");
+    view = finder.findRequiredView(source, 2131558529, "field 'infoUserImage'");
+    target.infoUserImage = finder.castView(view, 2131558529, "field 'infoUserImage'");
+    view = finder.findRequiredView(source, 2131558532, "field 'infoUserName'");
+    target.infoUserName = finder.castView(view, 2131558532, "field 'infoUserName'");
+    view = finder.findRequiredView(source, 2131558534, "field 'infoUserLevel'");
+    target.infoUserLevel = finder.castView(view, 2131558534, "field 'infoUserLevel'");
+    view = finder.findRequiredView(source, 2131558533, "field 'sexImage'");
+    target.sexImage = finder.castView(view, 2131558533, "field 'sexImage'");
+    view = finder.findRequiredView(source, 2131558537, "field 'infoUserSignature'");
+    target.infoUserSignature = finder.castView(view, 2131558537, "field 'infoUserSignature'");
+    view = finder.findRequiredView(source, 2131558528, "field 'btBack'");
+    target.btBack = finder.castView(view, 2131558528, "field 'btBack'");
+    view = finder.findRequiredView(source, 2131558530, "field 'btSetting'");
+    target.btSetting = finder.castView(view, 2131558530, "field 'btSetting'");
+    view = finder.findRequiredView(source, 2131558538, "field 'btMailbox'");
+    target.btMailbox = finder.castView(view, 2131558538, "field 'btMailbox'");
+    view = finder.findRequiredView(source, 2131558539, "field 'btMessage'");
+    target.btMessage = finder.castView(view, 2131558539, "field 'btMessage'");
+    view = finder.findRequiredView(source, 2131558540, "field 'btWind'");
+    target.btWind = finder.castView(view, 2131558540, "field 'btWind'");
   }
 
   @Override public void unbind(T target) {

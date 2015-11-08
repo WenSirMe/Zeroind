@@ -49,6 +49,12 @@ public interface MessageService {
             @Field("token") String token,
             @Field("id") int id);
 
+    @FormUrlEncoded
+    @POST("getMsg.do")
+    Call<ResponseStatus> getMessageDetail(
+            @Field("token") String token,
+            @Field("id") int id);
+
 
     @Multipart
     @POST("uploadImage.do")

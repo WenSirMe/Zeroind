@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +50,7 @@ public class EditFragment extends Fragment {
     private static final String WIND_DIRECTION = "WindDirection";
 
     @Bind(R.id.wind_edit_down)
-    Button windEditDown;
+    ImageButton windEditDown;
     @Bind(R.id.wind_edit_text)
     EditText windEditText;
 
@@ -187,12 +189,26 @@ public class EditFragment extends Fragment {
         void editActivityDown();
     }
     public void submitTextToServer(int wind_direction){
-        Call<ResponseStatus> call = BaseService
-                .getMessageService()
-                .postMessage(SharedPreferenceUtil.getInstance().getToken()
-                        , wind_direction
-                        , SharedPreferenceUtil.getInstance().getPostFragmentTempEditText(fromIndex)
-                        , "null");
+        Call<ResponseStatus> call;
+
+        final SharedPreferenceUtil mSharedManager = SharedPreferenceUtil.getInstance();
+
+        if (fromIndex == NContent.POST_MESSAGE){
+            call = BaseService
+                    .getMessageService()
+                    .postMessage(mSharedManager.getToken()
+                            , wind_direction
+                            , mSharedManager.getPostFragmentTempEditText(fromIndex)
+                            , "null");
+        }else {
+            call = BaseService
+                    .getMessageService()
+                    .replyMessage(mSharedManager.getToken()
+                            , mSharedManager.getLastReadMessageId()
+                            , mSharedManager.getPostFragmentTempEditText(fromIndex));
+        }
+
+
 
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
@@ -204,6 +220,7 @@ public class EditFragment extends Fragment {
                     Toast.makeText(getActivity(), "发送失败", Toast.LENGTH_SHORT).show();
                 }
                 //This will stop Refresh Animation
+                windEditText.setText("");
             }
 
             @Override

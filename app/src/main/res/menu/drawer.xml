@@ -15,11 +15,6 @@
         <item
             android:icon="@drawable/ic_menu_white_24dp"
             android:orderInCategory="2"
-            android:id="@+id/menu_item_report"
-            android:title="联系我们"/>
-        <item
-            android:icon="@drawable/ehhe"
-            android:orderInCategory="3"
             android:id="@+id/menu_item_about"
             android:title="关于"/>
     </group>

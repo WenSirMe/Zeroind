@@ -129,4 +129,12 @@ public class SharedPreferenceUtil {
 
     }
 
+    public void setLastReadMessageId(int number){
+        mEditor.putInt(NContent.LAST_READ_MESSAGE_ID,number);
+        mEditor.commit();
+    }
+    public int getLastReadMessageId(){
+        return mSharePreferences.getInt(NContent.LAST_READ_MESSAGE_ID,-1);
+    }
+
 }

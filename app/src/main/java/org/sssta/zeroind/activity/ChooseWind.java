@@ -14,8 +14,6 @@ public class ChooseWind extends AppCompatActivity {
         setContentView(R.layout.activity_choose_wind);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
 }

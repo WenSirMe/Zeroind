@@ -9,7 +9,13 @@ public class Message {
     private String content;
     private String sex;
     private int hp;
+
+    public int getFromLevel() {
+        return fromLevel;
+    }
+
     @SerializedName("wind_direction")
+
     private int windDirection;
     @SerializedName("from_uid")
     private int fromUid;

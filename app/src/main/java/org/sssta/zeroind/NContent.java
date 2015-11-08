@@ -19,4 +19,5 @@ public interface NContent {
     String INFO_MESSAGE_CONTENT = "InfoMessageContent";
     String INFO_MESSAGE_DIRECTION = "InfoMessageDirection";
     String INFO_MESSAGE_IMAGE_ID = "InfoMessageImageId";
+    String LAST_READ_MESSAGE_ID = "LastReadMessageId";
 }

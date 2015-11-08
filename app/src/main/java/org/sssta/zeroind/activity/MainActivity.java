@@ -234,12 +234,8 @@ public class MainActivity extends AppCompatActivity implements PlaneReceive.OnUs
                 lgActivity = true;
                 break;
             case R.id.menu_item_about:
-                intent = new Intent(this, AboutUsActivity.class);
+                intent = new Intent(this, AboutAllActivity.class);
                 startActivity(intent);
-                lgActivity = false;
-                break;
-            case R.id.menu_item_report:
-                showFragment(INDEX_FRAGMENT_REPORT);
                 lgActivity = false;
                 break;
         }

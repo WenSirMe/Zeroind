@@ -27,6 +27,8 @@
 
     <color name="light_title_blue">#A5C7EC</color>
     <color name="light_title_dark_blue">#A5C7EC</color>
-
+    
+    <color name="full_about_all_color">#BEDDFB</color>
+    <color name="about_us_tab_color">#D5EEFF</color>
 
 </resources>
