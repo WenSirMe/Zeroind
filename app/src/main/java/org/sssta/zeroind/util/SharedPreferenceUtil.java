@@ -20,7 +20,7 @@ public class SharedPreferenceUtil {
     private String img_id;
 
     public SharedPreferenceUtil() {
-        mContext = MyApplication.getInstance().getmContext();
+        mContext = MyApplication.getContext();
         mSharePreferences = mContext.getSharedPreferences(Constants.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
         mEditor = mSharePreferences.edit();
     }
